@@ -5,7 +5,10 @@ local isRetail = WOW_PROJECT_ID == (WOW_PROJECT_MAINLINE or 1)
 local L = DBM_CORE_L
 
 local LibStub = _G["LibStub"]
-local LibLatency, LibDurability = LibStub("LibLatency", true), LibStub("LibDurability", true)
+local LibLatency, LibDurability
+if LibStub then
+	LibLatency, LibDurability = LibStub("LibLatency", true), LibStub("LibDurability", true)
+end
 
 local function Pull(timer)
 	local LFGTankException = isRetail and IsPartyLFG() and UnitGroupRolesAssigned("player") == "TANK"--Tanks in LFG need to be able to send pull timer even if someone refuses to pass lead. LFG locks roles so no one can abuse this.
@@ -17,9 +20,9 @@ local function Pull(timer)
 	end
 	local targetName = (UnitExists("target") and UnitIsEnemy("player", "target")) and UnitName("target") or nil--Filter non enemies in case player isn't targetting bos but another player/pet
 	if targetName then
-		private.sendSync("PT", timer .. "\t" .. DBM:GetCurrentArea() .. "\t" .. targetName)
+		private.sendSync(private.DBMSyncProtocol, "PT", timer .. "\t" .. DBM:GetCurrentArea() .. "\t" .. targetName)
 	else
-		private.sendSync("PT", timer .. "\t" .. DBM:GetCurrentArea())
+		private.sendSync(private.DBMSyncProtocol, "PT", timer .. "\t" .. DBM:GetCurrentArea())
 	end
 end
 
@@ -32,7 +35,7 @@ local function Break(timer)
 		DBM:AddMsg(L.BREAK_USAGE)
 		return
 	end
-	private.sendSync("BT", timer * 60)
+	private.sendSync(private.DBMSyncProtocol, "BT", timer * 60)
 end
 
 local ShowLag, ShowDurability
@@ -133,6 +136,13 @@ if not _G["BigWigs"] then
 	SlashCmdList["DEADLYBOSSMODSBREAK"] = function(msg)
 		Break(tonumber(msg) or 10)
 	end
+	if C_PartyInfo then
+		C_PartyInfo.DoCountdown = function(msg)
+			if SlashCmdList.SLASH_DEADLYBOSSMODSPULL1 then
+				SlashCmdList.SLASH_DEADLYBOSSMODSPULL1(msg)
+			end
+		end
+	end
 end
 
 SLASH_DEADLYBOSSMODSRPULL1 = "/rpull"
@@ -143,6 +153,10 @@ end
 local trackedHudMarkers = {}
 SLASH_DEADLYBOSSMODS1 = "/dbm"
 SlashCmdList["DEADLYBOSSMODS"] = function(msg)
+	if not private.dbmIsEnabled then
+		DBM:ForceDisableSpam()
+		return
+	end
 	local cmd = msg:lower()
 	if cmd == "ver" or cmd == "version" then
 		DBM:ShowVersions(false)
@@ -258,6 +272,7 @@ SlashCmdList["DEADLYBOSSMODS"] = function(msg)
 			return
 		end
 		local hudType, target, duration = string.split(" ", cmd:sub(4):trim())
+		local _, targetOG, _ = string.split(" ", msg:sub(4):trim())
 		if hudType == "" then
 			for _, v in ipairs(L.HUD_USAGE) do
 				DBM:AddMsg(v)
@@ -283,7 +298,7 @@ SlashCmdList["DEADLYBOSSMODS"] = function(msg)
 			elseif isRetail and target == "focus" and UnitExists("focus") then
 				uId = "focus"
 			else -- Try to use it as player name
-				uId = DBM:GetRaidUnitId(target)
+				uId = DBM:GetRaidUnitId(targetOG)
 			end
 			if not uId then
 				DBM:AddMsg(L.HUD_INVALID_TARGET)
@@ -345,6 +360,7 @@ SlashCmdList["DEADLYBOSSMODS"] = function(msg)
 			return
 		end
 		local x, y, z = string.split(" ", cmd:sub(6):trim())
+		local xOG, _, _ = string.split(" ", msg:sub(6):trim())
 		local xNum, yNum, zNum = tonumber(x or ""), tonumber(y or ""), tonumber(z or "")
 		if xNum and yNum then
 			DBM.Arrow:ShowRunTo(xNum, yNum, 0)
@@ -366,8 +382,8 @@ SlashCmdList["DEADLYBOSSMODS"] = function(msg)
 			elseif subCmd == "map" then
 				DBM.Arrow:ShowRunTo(yNum, zNum, 0, nil, true)
 				return
-			elseif DBM:GetRaidUnitId(subCmd) then
-				DBM.Arrow:ShowRunTo(subCmd)
+			elseif DBM:GetRaidUnitId(xOG:trim()) then
+				DBM.Arrow:ShowRunTo(xOG:trim())
 				return
 			end
 		end
@@ -386,13 +402,14 @@ SlashCmdList["DEADLYBOSSMODS"] = function(msg)
 		DBM.Options.DebugMode = not DBM.Options.DebugMode
 		DBM:AddMsg("Debug Message is " .. (DBM.Options.DebugMode and "ON" or "OFF"))
 		private:GetModule("DevTools"):OnDebugToggle()
+	elseif cmd:sub(1, 4) == "test" then
+		DBM:DemoMode()
 	elseif cmd:sub(1, 8) == "whereiam" or cmd:sub(1, 8) == "whereami" then
+		local x, y, _, map = UnitPosition("player")
+		local mapID = C_Map.GetBestMapForUnit("player") or "nil"
 		if DBM:HasMapRestrictions() then
-			local _, _, _, map = UnitPosition("player")
-			DBM:AddMsg(("Location Information\nYou are at zone %u (%s).\nLocal Map ID %u (%s)"):format(map, GetRealZoneText(map), C_Map.GetBestMapForUnit("player"), GetZoneText()))
+			DBM:AddMsg(("Location Information\nYou are at zone %u (%s).\nLocal Map ID %u (%s)"):format(map, GetRealZoneText(map), mapID, GetZoneText()))
 		else
-			local x, y, _, map = UnitPosition("player")
-			local mapID = C_Map.GetBestMapForUnit("player")
 			local pos = C_Map.GetPlayerMapPosition(mapID, "player")
 			DBM:AddMsg(("Location Information\nYou are at zone %u (%s): x=%f, y=%f.\nLocal Map ID %u (%s): x=%f, y=%f"):format(map, GetRealZoneText(map), x, y, mapID, GetZoneText(), pos.x, pos.y))
 		end

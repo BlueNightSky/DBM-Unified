@@ -7,6 +7,7 @@ exclude_files = {
 ignore = {
 	"11./SLASH_.*", -- Setting an undefined (Slash handler) global variable
 	"11./BINDING_.*", -- Setting an undefined (Keybinding header) global variable
+	"11[23]/C_PartyInfo",
 	"212/self", -- Unused argument
 	"43.", -- Shadowing an upvalue, an upvalue argument, an upvalue loop variable.
 	"542", -- An empty if branch
@@ -25,6 +26,7 @@ globals = {
 	"DBM_CORE_L",
 	"DBM_COMMON_L",
 	"DBM_DISABLE_ZONE_DETECTION",
+	"DBMExtraGlobal",
 	"DBM_GUI",
 	"DBM_GUI_L",
 	"DBM_OPTION_SPACER",
@@ -34,6 +36,8 @@ globals = {
 	"LOCALE_zhCN",
 	"LOCALE_zhTW",
 
+	"Plater",
+
 	-- Lua
 	"bit.band",
 	"date",
@@ -42,6 +46,7 @@ globals = {
 	"time",
 
 	-- Utility functions
+	"CopyTable",
 	"geterrorhandler",
 	"fastrandom",
 	"format",
@@ -129,6 +134,7 @@ globals = {
 	"TAXIROUTE_LINEFACTOR",
 	"TAXIROUTE_LINEFACTOR_2",
 	"TOAST_DURATION_LONG",
+	"WOW_PROJECT_WRATH_CLASSIC",
 	"WOW_PROJECT_BURNING_CRUSADE_CLASSIC",
 	"WOW_PROJECT_CLASSIC",
 	"WOW_PROJECT_MAINLINE",
@@ -143,23 +149,30 @@ globals = {
 	"GameFontHighlightSmall",
 	"GameFontNormal",
 	"GameFontNormalSmall",
+	"GameFontWhite",
 	"MovieFrame",
 	"ObjectiveTrackerFrame",
-	"QuestWatchFrame", -- Classic
+	"QuestWatchFrame", -- Classic Era / BCC
 	"RaidBossEmoteFrame",
 	"RolePollPopup",
 	"SlashCmdList",
 	"StaticPopupDialogs",
 	"TimerTracker",
+	"WatchFrame", -- WotLKC
 	"WorldFrame",
 
+	"ChatEdit_GetActiveWindow",
 	"CinematicFrame_CancelCinematic",
 	"ObjectiveTracker_Collapse",
 	"ObjectiveTracker_Expand",
 	"OptionsList_OnLoad",
 	"StaticPopup_Hide",
+	"StaticPopup_Show",
 	"TimerTracker_OnEvent",
 
+	"Spell.CreateFromSpellID",
+
+	"C_AddOns.GetAddOnMetadata",
 	"C_BattleNet.GetAccountInfoByID",
 	"C_BattleNet.GetFriendAccountInfo",
 	"C_BattleNet.GetGameAccountInfoByID",
@@ -173,23 +186,31 @@ globals = {
 	"C_FriendList.GetFriendInfo",
 	"C_GamePad.SetVibration",
 	"C_Garrison.IsOnGarrisonMap",
+	"C_GossipInfo",
 	"C_LFGInfo",
 	"C_LFGInfo.GetDungeonInfo",
 	"C_Map.GetBestMapForUnit",
 	"C_Map.GetMapInfo",
 	"C_Map.GetPlayerMapPosition",
 	"C_Map.GetWorldPosFromMapPos",
+	"C_ModifiedInstance",
+	"C_ModifiedInstance.GetModifiedInstanceInfoFromMapID",
 	"C_NamePlate.GetNamePlateForUnit",
 	"C_NamePlate.GetNamePlates",
+	"C_PartyInfo",
 	"C_PlayerInfo.IsPlayerInChromieTime",
 	"C_QuestLog.IsQuestFlaggedCompleted",
 	"C_Scenario.GetCriteriaInfo",
 	"C_Scenario.GetInfo",
 	"C_Scenario.GetStepInfo",
 	"C_Scenario.IsInScenario",
+	"C_Seasons",
+	"C_Seasons.HasActiveSeason",
 	"C_Timer.After",
 	"C_Timer.NewTicker",
 	"C_UIWidgetManager.GetStatusBarWidgetVisualizationInfo",
+	"C_UnitAuras",
+	"C_ContentTracking",
 	"AcceptGroup",
 	"Ambiguate",
 	"BNGetFriendIndex", -- Classic
@@ -202,10 +223,10 @@ globals = {
 	"BNIsSelf",
 	"BNSendGameData",
 	"BNSendWhisper",
-	"ChatEdit_GetActiveWindow",
 	"CheckInteractDistance",
 	"CombatLogGetCurrentEventInfo",
 	"CreateFrame",
+	"CreateTextureMarkup",
 	"CreateVector2D",
 	"EnableAddOn",
 	"EJ_GetEncounterInfo",
@@ -263,6 +284,7 @@ globals = {
 	"GetSpecializationInfoByID",
 	"GetSpecializationRole",
 	"GetSpellCooldown",
+	"GetSpellDescription",
 	"GetSpellInfo",
 	"GetSpellTexture",
 	"GetSubZoneText",
@@ -297,12 +319,8 @@ globals = {
 	"SendChatMessage",
 	"SetCVar",
 	"SetRaidTarget",
-	"StaticPopup_Show",
 	"StopMusic",
 	"ToggleDropDownMenu",
-	"UIDropDownMenu_AddButton",
-	"UIDropDownMenu_CreateInfo",
-	"UIDropDownMenu_Initialize",
 	"UnitAffectingCombat",
 	"UnitAura",
 	"UnitBuff",
@@ -323,6 +341,7 @@ globals = {
 	"UnitHealthMax",
 	"UnitInBattleground",
 	"UnitInRange",
+	"UnitInRaid",
 	"UnitInPhase", -- Classic only
 	"UnitInVehicle",
 	"UnitIsAFK",
@@ -349,4 +368,6 @@ globals = {
 	"UnitRealmRelationship",
 	"UnitSetRole",
 	"UnitThreatSituation",
+	"UnitTokenFromGUID",
+	"UnitPercentHealthFromGUID",
 }

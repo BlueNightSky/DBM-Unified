@@ -11,8 +11,8 @@ L.TranslationBy 			= "GlitterStorm @ Azralon"
 L.OTabBosses	= "Chefes"
 L.OTabOptions	= "Opções"
 
-L.TabCategory_Options	 	= "Opções Gerais"
-L.TabCategory_OTHER    		= "Outros módulos"
+L.TabCategory_Options		= "Opções Gerais"
+L.TabCategory_OTHER			= "Outros módulos"
 
 L.BossModLoaded 			= "%s estatísticas"
 L.BossModLoad_now 			= [[Esse módulo não está carregado.
@@ -30,7 +30,7 @@ L.Mod_Enabled				= "Habilitar módulo"
 L.Mod_Reset					= "Carregar opções padrão"
 L.Reset 					= "Resetar"
 
-L.Enable  					= "Habilitar"
+L.Enable					= "Habilitar"
 L.Disable					= "Desabilitar"
 
 L.NoSound					= "Sem som"
@@ -93,9 +93,9 @@ L.MonochromeThickOutline	= "Espessura do contorno Monocromático"
 L.RaidWarnSound				= "toque som no aviso de raid"
 
 -- não existem no en.lua
-L.RaidWarnMessage 			= "Obrigado por utilizar o Deadly Boss Mods"   -- não existe no en.lua
-L.BarWhileMove 				= "Aviso de Raid móvel"   -- não existe no en.lua
-L.RaidWarnSound				= "Tocar som junto com o aviso na raid"    -- não existe no en.lua
+L.RaidWarnMessage 			= "Obrigado por utilizar o Deadly Boss Mods" -- não existe no en.lua
+L.BarWhileMove 				= "Aviso de Raid móvel" -- não existe no en.lua
+L.RaidWarnSound				= "Tocar som junto com o aviso na raid" -- não existe no en.lua
 
 
 
@@ -190,13 +190,10 @@ L.Area_SpamFilter			= "Opções do filtro Global"
 L.DontShowFarWarnings		= "Não exibir anúncios/temporizadores para eventos que estão longe"
 L.StripServerName			= "Tira com nome do reino em avisos e temporizadores"
 
-
 L.Area_SpecFilter			= "Opções de especialização"
 L.FilterTankSpec			= "Filtrar mensagens designadas para tank role quando não for tank. (Nota: Desabilitar esta função não é recomendado para a maioria dos usuários já que avisos de 'taunt' ( insultos ) estão habilitados por definição.)"
 L.FilterInterrupts			= "Filtrar avisos para habilidades passivas de cortes ( interrupts ) se o alvo não for o seu target ou focus ( Não se aplica para magias criticas que resultaram em derrota caso não seja interrompida)"
 L.FilterDispels				= "Filtrar avisos para magias dissipáveis se a seu dissipar estiver em recarga."
-L.FilterSelfHud				= "Filtrar a si mesmo no HudMap (Exclui funções de hud baseadas na distância)"
-
 
 L.Area_PullTimer			= "Opções de Filtros de Puxada, pausa, Combate, & Temporizador customizados"
 L.DontShowPTNoID			= "Bloquear o temporizador de Puxada se não foi enviado na mesma zona que você"

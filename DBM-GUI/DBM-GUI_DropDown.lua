@@ -4,19 +4,11 @@ local pairs, next, type, ipairs, setmetatable, mfloor, mmax = pairs, next, type,
 local CreateFrame, GameFontNormalSmall = CreateFrame, GameFontNormalSmall
 local DBM = DBM
 
+local isModernAPI = DBM:GetTOC() > 11403
+
 local defaultFont, defaultFontSize = GameFontHighlightSmall:GetFont()
 
-local hack = OptionsList_OnLoad
-function OptionsList_OnLoad(self, ...)
-	if self:GetName() ~= "DBM_GUI_DropDown" then
-		hack(self, ...)
-	end
-end
-
-local tabFrame1 = CreateFrame("Frame", "DBM_GUI_DropDown", _G["DBM_GUI_OptionsFrame"], "BackdropTemplate,OptionsFrameListTemplate")
-tabFrame1:Hide()
-tabFrame1:SetFrameStrata("TOOLTIP")
-tabFrame1.offset = 0
+local tabFrame1 = CreateFrame("ScrollFrame", "DBM_GUI_DropDown", _G["DBM_GUI_OptionsFrame"], "DBM_GUI_DropDownTemplate")
 tabFrame1.backdropInfo = {
 	bgFile		= "Interface\\ChatFrame\\ChatFrameBackground", -- 130937
 	edgeFile	= "Interface\\Tooltips\\UI-Tooltip-Border", -- 137057
@@ -25,10 +17,17 @@ tabFrame1.backdropInfo = {
 	edgeSize	= 16,
 	insets		= { left = 3, right = 3, top = 5, bottom = 3 }
 }
+if not isModernAPI then
+	tabFrame1.backdropInfo.bgFile = nil
+end
+tabFrame1:Hide()
+tabFrame1:SetFrameStrata("TOOLTIP")
+tabFrame1.offset = 0
 tabFrame1:ApplyBackdrop()
 tabFrame1:SetBackdropColor(0.1, 0.1, 0.1, 0.6)
 tabFrame1:SetBackdropBorderColor(0.4, 0.4, 0.4)
 
+-- Temporary hack, till I get both versions running smoothly on the new system
 local tabFrame1List = _G[tabFrame1:GetName() .. "List"]
 tabFrame1List:SetScript("OnVerticalScroll", function(self, offset)
 	local scrollbar = _G[self:GetName() .. "ScrollBar"]
@@ -213,6 +212,7 @@ function DBM_GUI:CreateDropdown(title, values, vartype, var, callfunc, width, he
 	end
 	local dropdown = CreateFrame("Frame", "DBM_GUI_DropDown" .. self:GetNewID(), parent or self.frame, "UIDropDownMenuTemplate")
 	dropdown.mytype = "dropdown"
+	dropdown.width = width
 	dropdown.values = values
 	dropdown.callfunc = callfunc
 	local dropdownText = _G[dropdown:GetName() .. "Text"]
@@ -234,7 +234,7 @@ function DBM_GUI:CreateDropdown(title, values, vartype, var, callfunc, width, he
 	local dropdownButton = _G[dropdown:GetName() .. "Button"]
 	dropdownButton:SetScript("OnMouseDown", nil)
 	dropdownButton:SetScript("OnClick", function(self)
-		DBM:PlaySound(856)
+		DBM:PlaySoundFile(567407)
 		if tabFrame1:IsShown() then
 			tabFrame1:Hide()
 			tabFrame1.dropdown = nil

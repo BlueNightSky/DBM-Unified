@@ -201,7 +201,6 @@ L.WorldBossAlert			= "Mostrar mensaje de alerta cuando un amigo o miembro de her
 
 L.Area_BugAlerts			= "Opciones de alertas de informes de fallos"
 L.BadTimerAlert				= "Mostrar mensaje en el chat cuando DBM detecte un temporizador erróneo"
-L.BadIDAlert				= "Mostrar mensaje en el chat cuando DBM detecte una ID de hechizo o guía de aventuras incorrecta"
 
 -- Panel: Spoken Alerts Frame
 L.Panel_SpokenAlerts		= "Alertas de voz"
@@ -218,8 +217,6 @@ L.SWFDefaultOnly			= "Cuando los avisos especiales usen sonidos por defecto"
 L.SWFAll					= "Cuando los avisos especiales usen cualquier sonido"
 L.SpecWarn_AlwaysVoice		= "Reproducir siempre todas las alertas de voz (ignora las opciones de jefe; útil para líderes de banda)"
 --TODO, maybe add URLS right to GUI panel on where to acquire 3rd party voice packs?
-L.Area_GetVEM				= "Descargar VEM Voice Pack"
-L.VEMDownload				= "|cFF73C2FBhttps://www.curseforge.com/wow/addons/dbm-voicepack-vem|r"
 L.Area_BrowseOtherVP		= "Explorar otros paquetes de voz en Curse"
 L.BrowseOtherVPs			= "|cFF73C2FBhttps://www.curseforge.com/wow/addons/search?search=dbm+voice|r"
 L.Area_BrowseOtherCT		= "Explorar otros paquetes de voz de cuenta atrás en Curse"
@@ -311,7 +308,6 @@ L.BarColorByType			= "Color por tipo"
 L.NoBarFade					= "Usar color inicial y color final para barras pequeñas y grandes, respectivamente, en lugar de efectuar cambios de color graduales"
 L.BarInlineIcons			= "Iconos en barras"
 L.ShortTimerText			= "Texto de temporizador breve"
-L.StripTimerText			= "Quitar 'TdR' y 'Siguiente' en los temporizadores"
 L.KeepBar					= "Mantener hasta que se lance la habilidad"
 L.KeepBar2					= "(siempre que el módulo lo permita)"
 L.FadeBar					= "Desteñir barras de habilidades lejanas"
@@ -358,7 +354,6 @@ L.FilterInterruptsHeader	= "Patrón para ocultar avisos de facultades interrumpi
 L.FilterInterrupts			= "Si no es tu objetivo o foco (siempre)"
 L.FilterInterrupts2			= "Si no es tu objetivo o foco (siempre) o no puedes interrumpir (solo jefes)"
 L.FilterInterrupts3			= "Si no es tu objetivo o foco (siempre) o no puedes interrumpir (todos los enemigos)"
-L.FilterInterrupts4			= "Ocultar todos los avisos de interrupción"
 L.FilterInterruptNoteName	= "Ocultar avisos de facultades interrumpibles con orden de interrupciones si el aviso no contiene tu nombre en la nota"
 L.FilterDispels				= "Ocular avisos de facultades disipables si tu disipación no está disponible"
 L.FilterTrashWarnings		= "Ocultar todos los avisos de enemigos menores en mazmorras normales y heroicas"

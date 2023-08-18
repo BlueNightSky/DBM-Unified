@@ -2,50 +2,68 @@ DBM_COMMON_L = {}
 
 local CL = DBM_COMMON_L
 
+--General
 CL.NONE								= "None"
 CL.RANDOM							= "Random"
+CL.UNKNOWN							= "Unknown"--UNKNOWN which is "Unknown" (does u vs U matter?)
 CL.NEXT								= "Next %s"
 CL.COOLDOWN							= "%s CD"
-CL.UNKNOWN							= "Unknown"--UNKNOWN which is "Unknown" (does u vs U matter?)
+CL.INCOMING							= "%s Incoming"
+CL.INTERMISSION						= "Intermission"--No blizz global for this, and will probably be used in most end tier fights with intermission phases
+CL.NO_DEBUFF						= "Not %s"--For use in places like info frame where you put "Not Spellname"
+CL.ALLY								= "Ally"--Such as "Move to Ally"
+CL.ALLIES							= "Allies"--Such as "Move to Allies"
+CL.TANK								= "Tank"--Such as "Move to Tank"
+CL.CLEAR							= "Clear"
+CL.SAFE								= "Safe"
+CL.NOTSAFE							= "Not Safe"
+CL.SEASONAL							= "Seasonal"--Used for option headers to label options that apply to seasonal mechanics (Such as season of mastery on classic era)
+--Movements/Places
 CL.LEFT								= "Left"
 CL.RIGHT							= "Right"
 CL.BOTH								= "Both"
 CL.BEHIND							= "Behind"
-CL.BACK								= "Back"--BACK
-CL.SIDE								= "Side"
-CL.TOP								= "Top"
-CL.BOTTOM							= "Bottom"
+CL.BACK								= "Back"--Back as in back of the room, not back as in body part
+CL.SIDE								= "Side"--Side as in move to the side
+CL.TOP								= "Top"--Top as in up top, not BDSM
+CL.BOTTOM							= "Bottom"--Bottom as in at the bottom, not BDSM
 CL.MIDDLE							= "Middle"
 CL.FRONT							= "Front"
 CL.EAST								= "East"
 CL.WEST								= "West"
 CL.NORTH							= "North"
 CL.SOUTH							= "South"
-CL.INTERMISSION						= "Intermission"--No blizz global for this, and will probably be used in most end tier fights with intermission phases
+CL.SHIELD							= "Shield"
+CL.PILLAR							= "Pillar"
+CL.SHELTER							= "Shelter"
+CL.EDGE								= "Room Edge"
+CL.FAR_AWAY							= "Far Away"
+CL.PIT								= "Pit"--Pit, as in hole in ground
+--Mechanics
+CL.BOMB								= "Bomb"
+CL.BOMBS							= "Bombs"
 CL.ORB								= "Orb"
 CL.ORBS								= "Orbs"
 CL.RING								= "Ring"
 CL.RINGS							= "Rings"
 CL.CHEST							= "Chest"--As in Treasure 'Chest'. Not Chest as in body part.
-CL.NO_DEBUFF						= "Not %s"--For use in places like info frame where you put "Not Spellname"
-CL.ALLY								= "Ally"--Such as "Move to Ally"
-CL.ALLIES							= "Allies"--Such as "Move to Allies"
 CL.ADD								= "Add"--A fight Add as in "boss spawned extra adds"
 CL.ADDS								= "Adds"
+CL.ADDCOUNT							= "Add %s"--ie, Add 1, Add 2, Add 3
 CL.BIG_ADD							= "Big Add"
 CL.BOSS								= "Boss"
-CL.EDGE								= "Room Edge"
-CL.FAR_AWAY							= "Far Away"
+CL.ENEMIES							= "Enemies"
 CL.BREAK_LOS						= "Break LOS"
-CL.RESTORE_LOS						= "Restore/Maintain LOS"
-CL.SAFE								= "Safe"
-CL.NOTSAFE							= "Not Safe"
-CL.SHIELD							= "Shield"
-CL.PILLAR							= "Pillar"
-CL.SHELTER							= "Shelter"
-CL.INCOMING							= "%s Incoming"
+CL.RESTORE_LOS						= "Maintain LOS"
 CL.BOSSTOGETHER						= "Bosses Together"
 CL.BOSSAPART						= "Bosses Apart"
+CL.MINDCONTROL						= "Mind Control"
+CL.TANKCOMBO						= "Tank Combo"
+CL.TANKCOMBOC						= "Tank Combo (%s)"
+CL.AOEDAMAGE						= "AOE Damage"
+CL.SoakC							= "Soak (%s)"
+CL.GROUPSOAK						= "Group Soak"
+CL.GROUPSOAKS						= "Group Soaks"
 
 --Journal Icons should not be copied to non english locals, do not include this section
 local EJIconPath = WOW_PROJECT_ID == (WOW_PROJECT_MAINLINE or 1) and "EncounterJournal" or "AddOns\\DBM-Core\\textures"
